@@ -1,0 +1,85 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit2.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm2 *Form2;
+//---------------------------------------------------------------------------
+__fastcall TForm2::TForm2(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm2::FormCreate(TObject *Sender)
+{
+	//FDQuery1->ExecSQL(true);
+	DBGrid1->Columns->Items[0]->Width = 430;
+	DBGrid1->Columns->Items[1]->Width = 50;
+	DBGrid1->Columns->Items[2]->Width = 65;
+	DBGrid1->Columns->Items[3]->Width = 140;
+	DBGrid1->Columns->Items[4]->Width = 130;
+	DBGrid1->Columns->Items[5]->Width = 110;
+	DBGrid1->Columns->Items[6]->Width = 100;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::combo_algorithmChange(TObject *Sender)
+{
+    std::stringstream ss;
+	ss<<"select results.brand as Identifier, results.cores as \"Cores\", results.threads as Threads, results.nominal_frequency as \"Nominal frequency\", results.benchmark_algorithm as Benchmark, results.run_on_threads as \"Multithreaded\", avg(results.score) as \"Highest score\" from results where ";
+	if(combo_threads->Text != "Any"){
+		ss<<"run_on_threads = \"";
+		ss<<StrToInt(combo_threads->Text);
+		ss<<"\" and ";
+	}
+	ss<<"benchmark_algorithm = \"";
+
+	switch(combo_algorithm->ItemIndex){
+	case 0:		{
+		ss<<"Integer";
+		break;     		  }
+	case 1:     {
+		ss<<"Floating point";
+		break;            }
+	case 2:     {
+		ss<<"SHA256";
+		break;            }
+	case 3:     {
+		ss<<"-";
+		break;            }
+	}
+	ss<<"\" group by brand, cores, threads, nominal_frequency";
+	if(combo_threads->Text == "Any")
+		ss<<", run_on_threads";
+	String updateStatement = ss.str().c_str();
+	ShowMessage(updateStatement);
+	FDQuery1->SQL->Text = updateStatement;
+	FDQuery1->Open();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::combo_threadsChange(TObject *Sender)
+{
+	std::stringstream ss;
+	ss<<"select results.brand as Identifier, results.cores as \"Cores\", results.threads as Threads, results.nominal_frequency as \"Nominal frequency\", results.benchmark_algorithm as Benchmark, results.run_on_threads as \"Multithreaded\", avg(results.score) as \"Highest score\" from results where ";
+	if(combo_threads->Text != "Any"){
+		ss<<"run_on_threads = \"";
+		ss<<StrToInt(combo_threads->Text);
+		ss<<"\" and ";
+	}
+	ss<<"benchmark_algorithm = \"";
+	ss<<combo_algorithm->Text.c_str();
+	ss<<"\" group by brand, cores, threads, nominal_frequency";
+	if(combo_threads->Text == "Any")
+		ss<<", run_on_threads";
+	String updateStatement = ss.str().c_str();
+    ShowMessage(updateStatement);
+	FDQuery1->SQL->Text = updateStatement;
+	FDQuery1->Open();
+}
+//---------------------------------------------------------------------------
+

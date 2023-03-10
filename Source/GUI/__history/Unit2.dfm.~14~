@@ -1,0 +1,141 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Scores'
+  ClientHeight = 706
+  ClientWidth = 1083
+  Color = clBlack
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 144
+    Top = 8
+    Width = 159
+    Height = 18
+    Caption = 'Benchmark algorithm'
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -15
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 560
+    Top = 8
+    Width = 59
+    Height = 18
+    Caption = 'Threads'
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -15
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 37
+    Width = 1067
+    Height = 660
+    Color = clBlack
+    DataSource = DataSource1
+    FixedColor = clBlack
+    GradientEndColor = clBlack
+    GradientStartColor = clBlack
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    TitleFont.Charset = ANSI_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -13
+    TitleFont.Name = 'Verdana'
+    TitleFont.Style = []
+  end
+  object combo_algorithm: TComboBox
+    Left = 309
+    Top = 5
+    Width = 214
+    Height = 26
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnChange = combo_algorithmChange
+    Items.Strings = (
+      'Integer'
+      'Floating point'
+      'SHA256'
+      '-')
+  end
+  object combo_threads: TComboBox
+    Left = 625
+    Top = 5
+    Width = 74
+    Height = 26
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'User_Name=admin'
+      'Database=benchmark'
+      'Password=Cxo2llyH'
+      'Port=10168'
+      'Server=mysql-102428-0.cloudclusters.net'
+      'DriverID=MyPhysDriver2')
+    Connected = True
+    Left = 936
+    Top = 5
+  end
+  object MySqlPhysDriver: TFDPhysMySQLDriverLink
+    DriverID = 'MyPhysDriver2'
+    VendorLib = 'C:\Users\rbbr2\Desktop\Benchmark GUI 2\x64\libmysql.dll'
+    Left = 1008
+    Top = 5
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT '#10#9'results.brand as Identifier, results.cores as "Cores", ' +
+        'results.threads as Threads,'#10#9'results.nominal_frequency as "Nomin' +
+        'al frequency", results.benchmark_algorithm as Benchmark,'#10#9'result' +
+        's.run_on_threads as "Multithreaded", results.score as "Highest s' +
+        'core"'#10'FROM'#10#9'results'#10'    INNER JOIN ('#10#9#9#9'SELECT'#10#9#9#9#9'brand,'#10'      ' +
+        '          max(score) as maxscore'#10#9#9#9'FROM'#10#9#9#9#9'results'#10#9#9#9'GROUP BY' +
+        #10#9#9#9#9'brand) topscore ON results.brand = topscore.brand'#10#9'AND resu' +
+        'lts.score = topscore.maxscore;')
+    Left = 864
+    Top = 5
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 792
+    Top = 5
+  end
+end

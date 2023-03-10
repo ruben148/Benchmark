@@ -1,0 +1,230 @@
+//---------------------------------------------------------------------------
+
+#ifndef Unit1H
+#define Unit1H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include <Vcl.DockTabSet.hpp>
+#include <Vcl.Tabs.hpp>
+#include <windows.h>
+#include "Unit2.h"
+#include <Data.DB.hpp>
+#include <FireDAC.Comp.Client.hpp>
+#include <FireDAC.Comp.DataSet.hpp>
+#include <FireDAC.DApt.hpp>
+#include <FireDAC.DApt.Intf.hpp>
+#include <FireDAC.DatS.hpp>
+#include <FireDAC.Phys.hpp>
+#include <FireDAC.Phys.Intf.hpp>
+#include <FireDAC.Phys.MySQL.hpp>
+#include <FireDAC.Phys.MySQLDef.hpp>
+#include <FireDAC.Stan.Async.hpp>
+#include <FireDAC.Stan.Def.hpp>
+#include <FireDAC.Stan.Error.hpp>
+#include <FireDAC.Stan.Intf.hpp>
+#include <FireDAC.Stan.Option.hpp>
+#include <FireDAC.Stan.Param.hpp>
+#include <FireDAC.Stan.Pool.hpp>
+#include <FireDAC.UI.Intf.hpp>
+#include <FireDAC.VCLUI.Wait.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.Grids.hpp>
+#include <queue>
+#include <deque>
+#include <boost_1_70/boost/interprocess/ipc/message_queue.hpp>
+
+//---------------------------------------------------------------------------
+
+class BenchmarkResult{
+public:
+	String brand;
+	String vendor;
+	String gpuName;
+	String instructions;
+	String storageDevices;
+	int cores;
+	int threads;
+	String cacheCount;
+	int totalMemory;
+	int memoryLength;
+	int pageSize;
+	int nominalFrequency;
+	char benchmarkAlgorithm[256];
+	int run_on_threads;
+	int seconds;
+};
+
+template<typename T, int MaxLen, typename Container = std::deque<T> >
+	class FixedQueue : public std::queue<T, Container>
+	{
+	public:
+		typedef typename Container::iterator iterator;
+		typedef typename Container::const_iterator const_iterator;
+		bool full = false;
+		void push(const T& value)
+		{
+			if (this->size() == MaxLen)
+			{
+				full = true;
+				this->c.pop_front();
+			}
+			std::queue<T, Container>::push(value);
+		}
+		int average()
+		{
+			int avg = 0;
+			for (auto it = this->begin(); it != this->end(); ++it)
+				avg += *it;
+			avg /= this->size();
+			return avg;
+		}
+		iterator begin() { return this->c.begin(); }
+		iterator end() { return this->c.end(); }
+		const_iterator begin() const { return this->c.begin(); }
+		const_iterator end() const { return this->c.end(); }
+	};
+
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+	TGroupBox *GroupBox1;
+	TComboBox *combo_threads;
+	TLabel *Label1;
+	TRadioGroup *radio_algorithm;
+	TUpDown *UpDown1;
+	TEdit *edit_seconds;
+	TLabel *Label2;
+	TButton *button_start;
+	TLabel *Label3;
+	TLabel *label_score;
+	TLabel *Label17;
+	TEdit *edit_total_memory;
+	TLabel *Label18;
+	TEdit *edit_available_memory;
+	TLabel *Label19;
+	TEdit *edit_page_size;
+	TLabel *Label20;
+	TEdit *edit_length;
+	TLabel *Label5;
+	TLabel *Label6;
+	TEdit *edit_vendor;
+	TEdit *edit_cores;
+	TEdit *edit_threads;
+	TEdit *edit_nominal_frequency;
+	TLabel *Label7;
+	TLabel *Label8;
+	TLabel *Label9;
+	TEdit *edit_brand;
+	TGroupBox *GroupBox2;
+	TGroupBox *GroupBox3;
+	TGroupBox *GroupBox4;
+	TGroupBox *GroupBox5;
+	TGroupBox *GroupBox6;
+	TEdit *edit_caches;
+	TLabel *Label10;
+	TGroupBox *GroupBox7;
+	TPanel *graph;
+	TLabel *Label12;
+	TEdit *edit_usage;
+	TLabel *Label4;
+	TEdit *edit_memory_usage;
+	TButton *button_start_memory;
+	TLabel *label_score_memory;
+	TLabel *Label13;
+	TTrackBar *trackbar_allocation_size;
+	TEdit *edit_allocation_size;
+	TLabel *Label14;
+	TMemo *memo_drives;
+	TLabel *label_instructions;
+	TLabel *Label11;
+	TMemo *memo_gpu;
+	TButton *Button1;
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall button_startClick(TObject *Sender);
+	void __fastcall button_start_memoryClick(TObject *Sender);
+	void __fastcall trackbar_allocation_sizeChange(TObject *Sender);
+	void __fastcall label_instructionsClick(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+
+	__fastcall TForm1(TComponent* Owner);
+	bool shouldStart = false;
+	bool shouldStartMemory = false;
+	char instructions[1024];
+	BenchmarkResult *lastResult;
+    STARTUPINFO si;
+	PROCESS_INFORMATION pi;
+    class PanelHack : public TPanel
+	{
+    public:
+        __property Canvas;
+	};
+	void drawGraph(FixedQueue<int,40> usages);
+};
+
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//---------------------------------------------------------------------------
+
+class Worker : public TThread
+{
+private:
+protected:
+	void __fastcall Execute();
+public:
+	__fastcall Worker(bool CreateSuspended, TForm1 *f, TForm2 *f2);
+	void __fastcall UpdateStatic();
+	void __fastcall UpdateDynamic();
+	void __fastcall GetAlgorithmIndex();
+	void __fastcall GetStart();
+	void __fastcall SetStart();
+	void __fastcall GetStartMemory();
+	void __fastcall SetStartMemory();
+	void __fastcall UpdateScore();
+    void __fastcall UpdateScoreMemory();
+	void __fastcall GetThreads();
+	void __fastcall GetSeconds();
+	void __fastcall GetAllocationSize();
+	void __fastcall CreateProcessBench();
+    void __fastcall CreateBenchmarkResult();
+    void __fastcall Draw();
+	TForm1 *Form1;
+    TForm2 *Form2;
+	char brand[64];
+	char vendor[32];
+	char gpuName[256];
+	char instructions[1024];
+	char drives[1024];
+	char storageDevices[1024];
+	DWORD logicalProcessorCount = 0;
+	DWORD processorCoreCount = 0;
+	DWORD processorL1CacheCount = 0;
+	DWORD processorL2CacheCount = 0;
+	DWORD processorL3CacheCount = 0;
+	int totalMemory;
+	int availableMemory;
+	int memoryLength;
+	int pageSize;
+	int nominalFrequency;
+	int usage;
+	int frequency;
+	int algorithmIndex;
+	int threads = 0;
+	int seconds = 0;
+	bool shouldStart = false;
+	bool shouldStartMemory = false;
+	int message = -2;
+    int score;
+	int allocation_size = 0;
+	FixedQueue<int, 40> usages;
+
+};
+
+#endif
