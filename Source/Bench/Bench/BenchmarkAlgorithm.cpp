@@ -9,7 +9,7 @@ void BenchmarkAlgorithm::run_multithreaded(std::vector<std::thread> &thread_pool
 	int number_of_threads = args[0];
 	thread_pool.reserve(number_of_threads);
 
-	CPU_Specs cpuSpecs;
+	Specs cpuSpecs;
 	cpuSpecs.init();
 
 	run(thread_pool);
@@ -19,14 +19,14 @@ void BenchmarkAlgorithm::run_multithreaded(std::vector<std::thread> &thread_pool
 		int availableMemory = cpuSpecs.getAvailableMemory();
 		int usage = cpuSpecs.getUsage();
 		int frequency = cpuSpecs.getFrequency();
-		std::cout << "Sending usage, freq and availMemory...";
+		//std::cout << "Sending usage, freq and availMemory...";
 		bench_to_gui.send(&usage, sizeof(int), 0);
 		bench_to_gui.send(&frequency, sizeof(int), 0);
 		bench_to_gui.send(&availableMemory, sizeof(int), 0);
-		std::cout << "Done sending." << std::endl;
+		//std::cout << "Done sending." << std::endl;
 	}
 	catch (interprocess_exception& ex) {
-		std::cout << ex.what() << std::endl;
+		//std::cout << ex.what() << std::endl;
 	}
 
 	if (join)

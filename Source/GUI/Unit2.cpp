@@ -110,3 +110,10 @@ void __fastcall TForm2::combo_threadsChange(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm2::FDConnection1Error(TObject *ASender, TObject *AInitiator,
+          Exception *&AException)
+{
+    ShowMessage("Couldn't connect to the database");
+}
+//---------------------------------------------------------------------------
+

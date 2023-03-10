@@ -41,13 +41,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CPU_Specs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Benchmark.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MemTest.h">
+    <ClInclude Include="MemTest.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Specs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

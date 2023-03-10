@@ -1,0 +1,96 @@
+﻿  Benchmark.cpp
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(616): warning C4129: 'S': unrecognized character escape sequence
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(343): warning C4244: 'return': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(398): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(579): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(580): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\benchmark.cpp(29): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+c:\users\rbbr2\desktop\bench\source\bench\bench\benchmark.cpp(100): warning C4101: 'ex': unreferenced local variable
+c:\users\rbbr2\desktop\bench\source\bench\bench\benchmark.cpp(107): warning C4101: 'ex': unreferenced local variable
+c:\users\rbbr2\desktop\bench\source\bench\bench\benchmark.hpp(40): warning C4267: '/=': conversion from 'size_t' to 'int', possible loss of data
+  c:\users\rbbr2\desktop\bench\source\bench\bench\benchmark.hpp(36): note: while compiling class template member function 'int benchmark::FixedQueue<int,5,std::deque<T,std::allocator<_Ty>>>::average(void)'
+          with
+          [
+              T=int,
+              _Ty=int
+          ]
+  c:\users\rbbr2\desktop\bench\source\bench\bench\benchmark.cpp(44): note: see reference to function template instantiation 'int benchmark::FixedQueue<int,5,std::deque<T,std::allocator<_Ty>>>::average(void)' being compiled
+          with
+          [
+              T=int,
+              _Ty=int
+          ]
+  c:\users\rbbr2\desktop\bench\source\bench\bench\benchmark.cpp(16): note: see reference to class template instantiation 'benchmark::FixedQueue<int,5,std::deque<T,std::allocator<_Ty>>>' being compiled
+          with
+          [
+              T=int,
+              _Ty=int
+          ]
+  BenchmarkAlgorithm.cpp
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(616): warning C4129: 'S': unrecognized character escape sequence
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(343): warning C4244: 'return': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(398): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(579): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(580): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\benchmarkalgorithm.cpp(28): warning C4101: 'ex': unreferenced local variable
+c:\users\rbbr2\desktop\bench\source\bench\bench\benchmarkalgorithm.cpp(56): warning C4244: 'return': conversion from 'long double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\benchmarkalgorithm.cpp(57): warning C4244: 'return': conversion from 'long double' to 'int', possible loss of data
+  Compression.cpp
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(616): warning C4129: 'S': unrecognized character escape sequence
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(343): warning C4244: 'return': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(398): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(579): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(580): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+  cpuid.cpp
+  main.cpp
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(616): warning C4129: 'S': unrecognized character escape sequence
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(343): warning C4244: 'return': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(398): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(579): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(580): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\memtest.hpp(33): warning C4244: 'argument': conversion from 'time_t' to 'unsigned long', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\main.cpp(66): warning C4101: 'ex': unreferenced local variable
+c:\users\rbbr2\desktop\bench\source\bench\bench\main.cpp(124): warning C4101: 'ex': unreferenced local variable
+c:\users\rbbr2\desktop\bench\source\bench\bench\main.cpp(145): warning C4101: 'ex': unreferenced local variable
+c:\users\rbbr2\desktop\bench\source\bench\bench\main.cpp(153): warning C4101: 'ex': unreferenced local variable
+  PrimeFloat.cpp
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(616): warning C4129: 'S': unrecognized character escape sequence
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(343): warning C4244: 'return': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(398): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(579): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(580): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\primefloat.cpp(29): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\primefloat.cpp(33): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+  PrimeInteger.cpp
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(616): warning C4129: 'S': unrecognized character escape sequence
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(343): warning C4244: 'return': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(398): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(579): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(580): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\primeinteger.cpp(33): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+  SHA256.cpp
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(616): warning C4129: 'S': unrecognized character escape sequence
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(343): warning C4244: 'return': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(398): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(579): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\specs.hpp(580): warning C4244: '=': conversion from 'DWORDLONG' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\sha256.cpp(118): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\rbbr2\desktop\bench\source\bench\bench\sha256.cpp(155): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+  Generating Code...
+  Bench.vcxproj -> C:\Users\rbbr2\Desktop\Bench\Source\Bench\x64\Debug\bench.exe

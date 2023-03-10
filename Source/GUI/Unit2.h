@@ -47,6 +47,8 @@ __published:	// IDE-managed Components
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall combo_algorithmChange(TObject *Sender);
 	void __fastcall combo_threadsChange(TObject *Sender);
+	void __fastcall FDConnection1Error(TObject *ASender, TObject *AInitiator, Exception *&AException);
+
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm2(TComponent* Owner);

@@ -1,6 +1,6 @@
 #pragma once
 #include <boost/interprocess/ipc/message_queue.hpp>
-#include "CPU_Specs.h"
+#include "Specs.hpp"
 #include <math.h>
 #include <iostream>
 #include <string>

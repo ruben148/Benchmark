@@ -1,5 +1,5 @@
 #include "benchmark.hpp"
-#include "CPU_Specs.h"
+#include "Specs.hpp"
 
 using namespace benchmark;
 
@@ -42,9 +42,9 @@ void BenchmarkAlgorithm::run_for(int number_of_threads, int seconds)
 
 		last_scores.push(score);
 		int sc = last_scores.average();
-		std::cout << "Sending score " << last_scores.average() << "...";
+		//std::cout << "Sending score " << last_scores.average() << "...";
 		bench_to_gui.send(&sc, sizeof(int), 0);
-		std::cout << "Done sending." << std::endl;
+		//std::cout << "Done sending." << std::endl;
 		if (last_scores.full) {
 
 		}
@@ -73,7 +73,7 @@ using namespace boost::interprocess;
 
 int __main() {
 
-	CPU_Specs cpuSpecs;
+	Specs cpuSpecs;
 	cpuSpecs.retrieveInformation();
 
 

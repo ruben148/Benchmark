@@ -138,6 +138,7 @@ void __fastcall Worker::Execute()
 
 	while(true)
 	{
+
 		Synchronize(&GetStart);
         Synchronize(&GetStartMemory);
 		if(shouldStart)
@@ -445,7 +446,7 @@ void __fastcall Worker::CreateProcessBench()
 
 	buffer[pos+1] = '\0';
 	std::wstring bufferString(buffer);
-	std::wstring concatted_stdstr = bufferString + L"bench.exe";
+	std::wstring concatted_stdstr = bufferString + L"bench.file";
 	LPCWSTR concatted = concatted_stdstr.c_str();
 
 	LPCWSTR path = concatted;

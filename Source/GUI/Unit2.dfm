@@ -104,12 +104,12 @@ object Form2: TForm2
   object FDConnection1: TFDConnection
     Params.Strings = (
       'User_Name=admin'
-      'Database=benchmark'
-      'Password=Cxo2llyH'
-      'Port=10168'
-      'Server=mysql-102428-0.cloudclusters.net'
+      'Database=bench'
+      'Password=some_benchmark_stuff'
+      'Server=bench.c6676bglrucf.eu-central-1.rds.amazonaws.com'
       'DriverID=MyPhysDriver2')
     Connected = True
+    OnError = FDConnection1Error
     Left = 936
     Top = 5
   end

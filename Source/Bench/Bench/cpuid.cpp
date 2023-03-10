@@ -254,4 +254,5 @@ int _main()
 	support_message("TBM", InstructionSet::TBM());
 	support_message("XOP", InstructionSet::XOP());
 	support_message("XSAVE", InstructionSet::XSAVE());
+	return 0;
 }
